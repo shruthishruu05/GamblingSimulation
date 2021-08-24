@@ -4,7 +4,7 @@ public class GamblingSimulation
 {
 	public static final int STARTING_STAKE = 100;
 	public static final int EVERY_GAME_BET = 1;
-	public static final int DAYS_PLAYED = 20;
+	public static final int DAYS_PLAYED = 30;
 	public static int currentStake;
 	
 	public static void makeBet() {
@@ -41,13 +41,31 @@ public class GamblingSimulation
 		}
 		System.out.println("Total winnings after "+DAYS_PLAYED+" days: "+totalWinnings);
 	}
+	
+	//uc5
+	public static void playForAMonth() {
+		int gamesWon=0, gamesLost=0, totalWinnings=0, totalLost=0;
+		for (int i = 1; i <= DAYS_PLAYED; i++) {
+			currentStake = STARTING_STAKE;
+			checkResignGame();
+			if(currentStake >= STARTING_STAKE*1.5) {
+				gamesWon++;
+				totalWinnings+=currentStake-STARTING_STAKE;
+			}
+			else {
+				gamesLost++;
+				totalLost+=STARTING_STAKE-currentStake;
+			}
+		}
+		System.out.println("Games Won: "+gamesWon+". Won $"+totalWinnings);
+		System.out.println("Games Lost: "+gamesLost+". Lost $"+totalLost);
+	}
+	
 	public static void main(String[] args) {
 		
-		playFor20Days();
+		playForAMonth();
 		
 	}
 
 }
-
-
 
