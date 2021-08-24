@@ -99,7 +99,7 @@ public class GamblingSimulation
 				break;
 		}
 		
-		System.out.println("Months played is: "+monthsPlayed);
+		System.out.println("Months played is.: "+monthsPlayed);
 		
 	}
 	
