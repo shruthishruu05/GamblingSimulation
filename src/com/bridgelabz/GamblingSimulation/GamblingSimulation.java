@@ -41,7 +41,6 @@ public class GamblingSimulation
 		System.out.println("Total winnings after "+DAYS_PLAYED+" days: "+totalWinnings);
 	}
 	
-	//uc5
 	public static void playForAMonth() {
 		int gamesWon=0, gamesLost=0, totalWinnings=0, totalLost=0;
 		for (int i = 1; i <= DAYS_PLAYED; i++) {
@@ -81,6 +80,29 @@ public class GamblingSimulation
 		System.out.println("Lucky Day : "+luckiestDay);
 		System.out.println("Unlucky Day : "+unluckiestDay);
 	}
+       public static void continueNextMonth() {
+		
+		int gamesWon=0, gamesLost=0, monthsPlayed=0;
+		while(true) {
+			monthsPlayed++;
+			for (int i = 1; i <= DAYS_PLAYED; i++) {
+				currentStake = STARTING_STAKE;
+				checkResignGame();
+				if(currentStake >= STARTING_STAKE*1.5) {
+					gamesWon++;
+				}
+				else {
+					gamesLost++;
+				}
+			}
+			if(gamesWon<gamesLost)
+				break;
+		}
+		
+		System.out.println("Months: "+monthsPlayed);
+		
+	}
+	
 	
 	public static void main(String[] args) {
 		
