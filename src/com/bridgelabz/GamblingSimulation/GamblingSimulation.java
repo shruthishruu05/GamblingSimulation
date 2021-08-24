@@ -9,7 +9,7 @@ public class GamblingSimulation {
 	public static void Bet() {
 		
 		if(Math.random() > 0.5) {
-			currentStake+=GAME_BET;
+			currentStake=currentStake+GAME_BET;
 			System.out.println("Won $"+GAME_BET);
 		}
 		else {
