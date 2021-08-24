@@ -14,10 +14,10 @@ public class GamblingSimulation
 		}
 		else {
 			currentStake-=EVERY_GAME_BET;
+			
 		}
 		
 	}
-	
 	public static void checkResignGame() {
 		Boolean shouldResign=false;
 		while(!shouldResign) {
@@ -30,7 +30,6 @@ public class GamblingSimulation
 		}
 		
 	}
-	
 	public static void playFor20Days() {
 		int totalWinnings = 0;
 		for (int i = 1; i <= DAYS_PLAYED; i++) {
@@ -61,11 +60,32 @@ public class GamblingSimulation
 		System.out.println("Games Lost: "+gamesLost+". Lost $"+totalLost);
 	}
 	
+	public static void luckiestAndUnluckiestDay() {
+		int maxWinnings=0, maxLost=0, luckiestDay=0, unluckiestDay=0;
+		for (int i = 1; i <= DAYS_PLAYED; i++) {
+			currentStake = STARTING_STAKE;
+			checkResignGame();
+			if(currentStake >= STARTING_STAKE*1.5) {
+				if(maxWinnings < (currentStake-STARTING_STAKE)) {
+					luckiestDay=i;
+					maxWinnings = currentStake-STARTING_STAKE;
+				}
+			}
+			else {
+				if(maxLost < (STARTING_STAKE-currentStake)) {
+					unluckiestDay=i;
+					maxLost = STARTING_STAKE-currentStake;
+				}
+			}
+		}
+		System.out.println("Lucky Day : "+luckiestDay);
+		System.out.println("Unlucky Day : "+unluckiestDay);
+	}
+	
 	public static void main(String[] args) {
 		
-		playForAMonth();
+		luckiestAndUnluckiestDay();
 		
 	}
 
 }
-
